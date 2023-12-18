@@ -8,7 +8,7 @@ import {
 
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from '../../redux/ContactsSlice';
+import { addNewContact } from '../../redux/ContactsSlice';
 
 const contactsSheme = Yup.object().shape({
   name: Yup.string().required('Required'),
@@ -19,18 +19,22 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const initialContacts = useSelector(state => state.contacts);
 
-  const addContact = value => {
-    const hasName = initialContacts.some(
+const addContact = value => {
+  if (Array.isArray(initialContacts.contacts)) {
+    const hasName = initialContacts.contacts.some(
       contact => contact.name === value.name
     );
     if (hasName) {
       alert(`${value.name} is already in contacts.`);
       return;
     } else {
-      const action = addContacts(value);
+      const action = addNewContact(value);
       dispatch(action);
     }
-  };
+  } else {
+    console.error("initialContacts.contacts is not an array");
+  }
+};
 
   return (
     <Formik

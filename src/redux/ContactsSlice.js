@@ -1,44 +1,75 @@
 import { nanoid } from 'nanoid';
-import storage from 'redux-persist/lib/storage';
+// import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+// import { persistReducer } from 'redux-persist';
 
-export const contactsSlice = createSlice({
-  name: 'phonebook',
+// export const contactsSlice = createSlice({
+//   name: 'phonebook',
+//   initialState: {
+//     contacts: [],
+//     filters: '',
+//   },
+//   reducers: {
+//     addNewContact: {
+//       prepare(data) {
+//         return {
+//           payload: {
+//             value: data,
+//             id: nanoid(),
+//           },
+//         };
+//       },
+//       reducer(state, action) {
+//         state.contacts = [...state.contacts, action.payload];
+//       },
+//     },
+//     setFilters(state, action) {
+//       state.filters = action.payload;
+//     },
+//     deleteStoreContact(state, action) {
+//       state.contacts = state.contacts.filter(
+//         item => item.id !== action.payload
+//       );
+//     },
+//   },
+// });
+// const persistConfig = {
+//   key: 'contacts',
+//   storage,
+//   whitelist: ['contacts'],
+// };
+
+// export const phonebookReducer = contactsSlice.reducer;
+// export const { addNewContact, setFilters, deleteStoreContact } = contactsSlice.actions;
+// export const persistedReducer = persistReducer(persistConfig, phonebookReducer);
+
+const contactsSlice = createSlice({
+  name: 'contacts',
   initialState: {
     contacts: [],
     filters: '',
   },
   reducers: {
-    addContacts: {
-      prepare(data) {
+    addNewContact: {
+      reducer(state, action) {
+        state.contacts.push(action.payload); // Обращаемся к полю contacts
+      },
+      prepare({ name, number }) {
         return {
           payload: {
-            value: data,
             id: nanoid(),
+            name: name,
+            number: number,
           },
         };
       },
-      reducer(state, action) {
-        state.contacts = [...state.contacts, action.payload];
-      },
-    },
-    filters(state, action) {
-      state.filters = action.payload;
     },
     deleteStoreContact(state, action) {
-      state.contacts = state.contacts.filter(
-        item => item.id !== action.payload
-      );
+      // Используем метод filter для обращения к массиву contacts
+      state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
     },
   },
 });
-const persistConfig = {
-  key: 'contacts',
-  storage,
-  whitelist: ['contacts'],
-};
 
-export const phonebookReduсer = contactsSlice.reducer;
-export const { addContacts, filters, deleteStoreContact } = contactsSlice.actions;
-export const persistedReducer = persistReducer(persistConfig, phonebookReduсer);
+export const contactsReducer = contactsSlice.reducer;
+export const { addNewContact, deleteStoreContact } = contactsSlice.actions;
