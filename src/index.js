@@ -4,7 +4,7 @@ import { App } from 'components/App';
 import { Provider } from 'react-redux';
 import { persistor, store } from './redux/Store';
 import { PersistGate } from 'redux-persist/integration/react';
-import './index.css';
+// import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

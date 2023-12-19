@@ -5,8 +5,8 @@ import { List, ListItem, ListItemBtn } from './ContactList.styled';
 export const ContactList = () => {
   const dispatch = useDispatch();
 
-  const initialContacts = useSelector(state => state.contacts.contacts); // Обращаемся к полю contacts
-  const stateFilter = useSelector(state => state.contacts.filters); // Обращаемся к полю filters
+  const initialContacts = useSelector(state => state.contacts.contacts);
+  const stateFilter = useSelector(state => state.filter);
 
   const visibleContacts = initialContacts.filter(contact => {
     const hasFilteredName = contact.name &&
