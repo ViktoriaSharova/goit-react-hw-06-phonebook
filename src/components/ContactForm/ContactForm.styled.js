@@ -4,12 +4,22 @@ import { styled } from 'styled-components';
 export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  // gap: 20px;
+  // padding: 20px;
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  // width: 500px;
+  // border: 1px solid black;
+    align-items: center;
+  max-width: 300px;
+  margin: auto;
   padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 500px;
-  border: 1px solid black;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+    div {
+    margin-bottom: 10px;
+  }
 `;
 
 export const FormLabel = styled.label`
@@ -29,3 +39,4 @@ export const FormBtn = styled.button`
   background-color: lightblue;
   cursor: pointer;
 `;
+

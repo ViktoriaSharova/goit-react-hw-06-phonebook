@@ -49,14 +49,18 @@ const addContact = value => {
       }}
     >
       <FormWrapper>
+      <div>
         <FormLabel>
           Name
           <FormField name="name" />
         </FormLabel>
+        </div>
+        <div>
         <FormLabel>
           Number
           <FormField name="number" />
-        </FormLabel>
+          </FormLabel>
+          </div>
         <FormBtn type="submit">Add contact</FormBtn>
       </FormWrapper>
     </Formik>
